@@ -1,8 +1,7 @@
 {{/* The page reference is the first parameter */}}
 {{- $ref := .Get 0 -}}
 {{- $page := $ref -}}
-{{/* We check to see if we have a hash in the ref so we can
-ignore it when we get the page's info */}}
+{{/* We check to see if we have a hash in the ref so we can ignore it when we get the page's info */}}
 {{- if (in $page "#") -}}
   {{- $parts := split $page "#" -}}
   {{- $page = (index $parts 0) -}}
@@ -14,6 +13,5 @@ ignore it when we get the page's info */}}
 {{- with $page -}}
 {{/* If anchor text was not sent in, we'll use the title of the page we are referencing */}}
 {{- if not ($linkText) -}}{{- $linkText = .Title -}}{{- end -}}
-{{/* Construct the markdown for our link */}}
 [{{- $linkText -}}]({{ relref . $ref }} "{{- .Description -}}")
 {{- end -}}
