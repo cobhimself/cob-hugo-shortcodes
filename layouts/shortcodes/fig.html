@@ -1,0 +1,8 @@
+{{/* The file to display as a figure is distinguished by the "file" attribute. */}}
+{{ $file := .Get "file" }}
+{{/* "id" is an optional parameter */}}
+<figure{{ with .Get "id" }} id="{{.}}"{{ end }}>
+  {{ (print "``` text\n" (readFile $file) "\n```\n") | markdownify}}
+  {{/* If a caption was provided, make it a figcaption */}}
+  {{ with .Get "caption" }}<figcaption>{{.}}</figcaption>{{ end }}
+</figure>

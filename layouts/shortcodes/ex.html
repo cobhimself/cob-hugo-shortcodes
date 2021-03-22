@@ -1,0 +1,14 @@
+{{ $file := .Get "file" }}
+{{ $ext := path.Ext $file }}
+{{ if $ext }}
+{{ $ext = replace $ext "." "" }}
+{{ else }}
+  {{ $ext = .Get "lang" }}
+{{ end }}
+
+{{ $file = $file | readFile }}
+
+<figure{{ with .Get "id" }} id="{{.}}"{{ end }}>
+{{ (print "```" $ext "\n" $file "\n```") | markdownify }}
+{{ with .Get "caption" }}<figcaption>{{.}}</figcaption>{{ end }}
+</figure>
