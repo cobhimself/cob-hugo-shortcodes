@@ -1,0 +1,5 @@
+module:
+  hugoVersion:
+    min: 0.81.0
+    extended: true
+  path: github.com/cobhimself/cob-hugo-shortcodes
